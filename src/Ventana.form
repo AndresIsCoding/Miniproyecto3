@@ -5,7 +5,9 @@
     <constraints>
       <xy x="20" y="20" width="541" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <foreground color="-9289589"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="af035" class="javax.swing.JButton" binding="Bfacil">
@@ -14,12 +16,13 @@
         </constraints>
         <properties>
           <background color="-1"/>
-          <borderPainted value="false"/>
+          <borderPainted value="true"/>
           <contentAreaFilled value="true"/>
           <defaultCapable value="true"/>
           <font size="18" style="1"/>
           <foreground color="-5433815"/>
           <opaque value="true"/>
+          <requestFocusEnabled value="true"/>
           <selected value="false"/>
           <text value="Fácil"/>
         </properties>

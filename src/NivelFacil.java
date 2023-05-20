@@ -1,36 +1,28 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Ventana extends JFrame
+public class NivelFacil extends Ventana
 {
-    private JPanel panel1;
-    private JButton Bfacil;
-    private JButton Bmedio;
-    private JButton Bdificil;
-    private JLabel Llogo;
+    private JPanel panel2;
+    private JButton Bvolver;
 
-
-    public Ventana()
+    public NivelFacil()
     {
-        super("Memory Game");
-        setContentPane(panel1);
+        setContentPane(panel2);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        Bfacil.addActionListener(new ActionListener()
-        {
+        Bvolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                JFrame frame = new NivelFacil();
+                JFrame frame = new Ventana();
                 frame.setSize(800, 600);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
                 dispose();
-
                 frame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
@@ -41,9 +33,9 @@ public class Ventana extends JFrame
                         }
                     }
                 });
+
             }
         });
-
-
     }
+
 }
