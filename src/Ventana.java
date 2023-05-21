@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,8 +50,10 @@ public class Ventana extends JFrame {
         String ltimer = horas +"h:" + minutos + "m:" + segundos + "s";
         Ltimer.setText(ltimer);
     }
-    public Ventana() {
+        public Ventana()
+        {
         super("Memory Game");
+
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Bfacil.setFocusPainted(false);
@@ -58,6 +61,7 @@ public class Ventana extends JFrame {
         Bdificil.setFocusPainted(false);
         Pmenus.setVisible(false);
 
+        //Fondo
 
         Ctimer=new Timer(1000, e -> { //Uso de Timer para el funcionamiento del cronometro
             segundos++;
