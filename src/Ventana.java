@@ -8,7 +8,7 @@ public class Ventana extends JFrame {
     private JButton Bfacil;
     private JButton Bmedio;
     private JButton Bdificil;
-    private JButton Btutorial;
+    private JButton Baspecto;
     private JPanel Pmenus;
     private JPanel Popciones;
     private JButton Bvolver;
@@ -19,7 +19,7 @@ public class Ventana extends JFrame {
     private JButton a4Button;
     private JButton a7Button;
     private JLabel Ltimer;
-    private JPanel Pconfig;
+    private JPanel Paspectos;
     private JButton a8Button;
     private JButton a6Button;
     private JButton a5Button;
@@ -39,6 +39,7 @@ public class Ventana extends JFrame {
     private JButton a16Button;
     private JButton Breiniciar;
     private JButton Bempezar;
+    private JPanel PopcionesJuego;
     private Timer Ctimer;
     private int horas = 0;
     private int minutos= 0;
@@ -56,6 +57,7 @@ public class Ventana extends JFrame {
         Bmedio.setFocusPainted(false);
         Bdificil.setFocusPainted(false);
         Pmenus.setVisible(false);
+
 
         Ctimer=new Timer(1000, e -> { //Uso de Timer para el funcionamiento del cronometro
             segundos++;
@@ -78,7 +80,41 @@ public class Ventana extends JFrame {
             }
             ActualizarLtimer();
         });
+        Bvolver.addActionListener(new ActionListener() //Devuelve a la pantalla inicial
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Pinicio.setVisible(true);
+                Pmenus.setVisible(false);
+                Paspectos.setVisible(false);
+                Popciones.setVisible(false);
+                PopcionesJuego.setVisible(false);
+                Pfacil.setVisible(false);
+                Pmedio.setVisible(false);
+                Pdificil.setVisible(false);
 
+                if(Ctimer.isRunning())
+                {
+                    Ctimer.stop();
+                    Bempezar.setEnabled(true);
+                }
+                horas = 0;
+                minutos = 0;
+                segundos = 0;
+                ActualizarLtimer();
+            }
+        });
+        Bempezar.addActionListener(new ActionListener() //Comienza el nivel
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Ctimer.start();
+                Bempezar.setEnabled(false);
+                Breiniciar.setEnabled(true);
+            }
+        });
         Breiniciar.addActionListener(new ActionListener()
         {
             @Override
@@ -97,39 +133,7 @@ public class Ventana extends JFrame {
                 Breiniciar.setEnabled(false);
             }
         });
-        Bempezar.addActionListener(new ActionListener() //Comienza el nivel
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                Ctimer.start();
-                Bempezar.setEnabled(false);
-                Breiniciar.setEnabled(true);
-            }
-        });
-        Bvolver.addActionListener(new ActionListener() //Devuelve a la pantalla inicial
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                Pinicio.setVisible(true);
-                Pmenus.setVisible(false);
-                Pconfig.setVisible(false);
-                Pfacil.setVisible(false);
-                Pmedio.setVisible(false);
-                Pdificil.setVisible(false);
 
-                if(Ctimer.isRunning())
-                {
-                    Ctimer.stop();
-                    Bempezar.setEnabled(true);
-                }
-                horas = 0;
-                minutos = 0;
-                segundos = 0;
-                ActualizarLtimer();
-            }
-        });
         Bfacil.addActionListener(new ActionListener() //Abre el nivel facil (4 imagenes)
         {
             @Override
@@ -137,7 +141,9 @@ public class Ventana extends JFrame {
             {
                 Pinicio.setVisible(false);
                 Pmenus.setVisible(true);
-                Pconfig.setVisible(false);
+                Paspectos.setVisible(false);
+                Popciones.setVisible(true);
+                PopcionesJuego.setVisible(true);
                 Pfacil.setVisible(true);
                 Pmedio.setVisible(false);
                 Pdificil.setVisible(false);
@@ -150,7 +156,9 @@ public class Ventana extends JFrame {
             {
                 Pinicio.setVisible(false);
                 Pmenus.setVisible(true);
-                Pconfig.setVisible(false);
+                Paspectos.setVisible(false);
+                Popciones.setVisible(true);
+                PopcionesJuego.setVisible(true);
                 Pfacil.setVisible(false);
                 Pmedio.setVisible(true);
                 Pdificil.setVisible(false);
@@ -164,10 +172,28 @@ public class Ventana extends JFrame {
             {
                 Pinicio.setVisible(false);
                 Pmenus.setVisible(true);
-                Pconfig.setVisible(false);
+                Paspectos.setVisible(false);
+                Popciones.setVisible(true);
+                PopcionesJuego.setVisible(true);
                 Pfacil.setVisible(false);
                 Pmedio.setVisible(false);
                 Pdificil.setVisible(true);
+            }
+        });
+
+        Baspecto.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Pinicio.setVisible(false);
+                Pmenus.setVisible(true);
+                Paspectos.setVisible(true);
+                Popciones.setVisible(true);
+                PopcionesJuego.setVisible(false);
+                Pfacil.setVisible(false);
+                Pmedio.setVisible(false);
+                Pdificil.setVisible(false);
             }
         });
     }
