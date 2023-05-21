@@ -1,142 +1,50 @@
 import javax.swing.*;
-import javax.swing.plaf.ColorChooserUI;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-public class Ventana extends JFrame
-{
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Ventana extends JFrame {
     private JPanel panel1;
+    private JPanel Pinicio;
     private JButton Bfacil;
     private JButton Bmedio;
     private JButton Bdificil;
-    private JLabel Llogo;
-    private JLabel Ltutorial;
-    private Color color1;
-    private Color color2;
+    private JButton Btutorial;
+    private JPanel Pmenus;
+    private JPanel Popciones;
+    private JButton Bvolver;
+    private JPanel Pjuego;
+    private JButton a1Button;
+    private JButton a2Button;
+    private JButton a3Button;
+    private JButton a4Button;
+    private JButton a5Button;
+    private JButton a6Button;
+    private JButton a7Button;
+    private JButton a8Button;
+    private JButton a9Button;
+    private JLabel Ltimer;
+    private JPanel Pconfig;
 
-    public Ventana()
-    {
 
+    public Ventana() {
         super("Memory Game");
-        setContentPane(panel1); //PANTALLA INICIAL (MENU)
+        setContentPane(panel1);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        Bfacil.setFocusPainted(false);
+        Bmedio.setFocusPainted(false);
+        Bdificil.setFocusPainted(false);
+        Pmenus.setVisible(false);
 
-        //CONFIGURACIONES DEL PANEL
-        color1= new Color(173,22,41);
-        color2=new Color(114,64,139);
-        Bfacil.addActionListener(new ActionListener() //ABRE EL NIVEL FACIL
+        Bfacil.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                JFrame frame = new NivelFacil();
-                frame.setSize(800, 600);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-                dispose();
-
-
-                frame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        int opc = JOptionPane.showConfirmDialog(null, "¿Desea salir?", "Mensaje de confirmación", JOptionPane.OK_CANCEL_OPTION);
-                        if (opc == 0) {
-                            System.exit(0);
-                        }
-                    }
-                });
+                Pmenus.setVisible(true);
+                Pjuego.setVisible(true);
+                Pinicio.setVisible(false);
+                Pconfig.setVisible(false);
             }
         });
-        Bmedio.addActionListener(new ActionListener() //ABRE EL NIVEL MEDIO
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                JFrame frame = new NivelMedio();
-                frame.setSize(800, 600);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-                dispose();
-
-                frame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        int opc = JOptionPane.showConfirmDialog(null, "¿Desea salir?", "Mensaje de confirmación", JOptionPane.OK_CANCEL_OPTION);
-                        if (opc == 0) {
-                            System.exit(0);
-                        }
-                    }
-                });
-
-            }
-        });
-
-        Bdificil.addActionListener(new ActionListener() //ABRE EL  NIVEL DIFICIL
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                JFrame frame = new NivelDificil();
-                frame.setSize(800, 600);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-                dispose();
-
-                frame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        int opc = JOptionPane.showConfirmDialog(null, "¿Desea salir?", "Mensaje de confirmación", JOptionPane.OK_CANCEL_OPTION);
-                        if (opc == 0) {
-                            System.exit(0);
-                        }
-                    }
-                });
-
-            }
-        });
-        Ltutorial.addMouseListener(new MouseAdapter() //ABRE LA PESTAÑA DEL TUTORIAL
-        {
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                super.mouseClicked(e);
-                JFrame frame = new Tutorial();
-                frame.setSize(800,600);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-                dispose();
-                frame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        int opc = JOptionPane.showConfirmDialog(null, "¿Desea salir?", "Mensaje de confirmación", JOptionPane.OK_CANCEL_OPTION);
-                        if (opc == 0) {
-                            System.exit(0);
-                        }
-                    }
-                });
-
-            }
-        });
-
     }
-    @Override
-    public void paint(Graphics g)
-    {
-        super.paint(g);
-        Graphics2D g2d=(Graphics2D) g;
-        int w=getWidth();
-        int h=getHeight();
-
-        GradientPaint gradientPaint=new GradientPaint(0,0,color1,0,h,color2);
-        g2d.setPaint(gradientPaint);
-        g2d.fillRect(0,0,w,h);
-
-    }
-
 }
