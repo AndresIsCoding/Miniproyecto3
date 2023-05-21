@@ -43,38 +43,9 @@ public class Ventana extends JFrame {
     private int horas = 0;
     private int minutos= 0;
     private int segundos;
-
-    public void IniciarCronometro()
+    public void ActualizarLtimer() //Actualiza el label del cronometro
     {
-        ActualizarTiempo();
-        ActualizarLtimer();
-    }
-
-    public void ActualizarTiempo()
-    {
-
-        segundos++;
-        if (segundos==60)
-        {
-            segundos=0;
-            minutos++;
-        }
-
-        if (minutos==60)
-        {
-            minutos=0;
-            horas++;
-        }
-        if (horas==24)
-        {
-            horas=0;
-            minutos=0;
-            segundos=0;
-        }
-    }
-    public void ActualizarLtimer()
-    {
-        String ltimer = horas +"h" + minutos + "m" + segundos + "s";
+        String ltimer = horas +"h:" + minutos + "m:" + segundos + "s";
         Ltimer.setText(ltimer);
     }
     public Ventana() {
@@ -86,9 +57,25 @@ public class Ventana extends JFrame {
         Bdificil.setFocusPainted(false);
         Pmenus.setVisible(false);
 
-        Ctimer=new Timer(1000, e -> {
-            IniciarCronometro();
-            ActualizarTiempo();
+        Ctimer=new Timer(1000, e -> { //Uso de Timer para el funcionamiento del cronometro
+            segundos++;
+            if (segundos==60)
+            {
+                segundos=0;
+                minutos++;
+            }
+
+            if (minutos==60)
+            {
+                minutos=0;
+                horas++;
+            }
+            if (horas==24)
+            {
+                horas=0;
+                minutos=0;
+                segundos=0;
+            }
             ActualizarLtimer();
         });
 
@@ -97,11 +84,17 @@ public class Ventana extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(Ctimer.isRunning())
+                if(Ctimer.isRunning()) //Condicion para que el cronometro se detenga
                 {
                     Ctimer.stop();
+                    Bempezar.setEnabled(true);
                 }
-
+                horas = 0;
+                minutos = 0;
+                segundos = 0;
+                ActualizarLtimer(); //Reinicia el cronometro
+                Bempezar.setEnabled(true);
+                Breiniciar.setEnabled(false);
             }
         });
         Bempezar.addActionListener(new ActionListener() //Comienza el nivel
@@ -110,7 +103,8 @@ public class Ventana extends JFrame {
             public void actionPerformed(ActionEvent e)
             {
                 Ctimer.start();
-                IniciarCronometro();
+                Bempezar.setEnabled(false);
+                Breiniciar.setEnabled(true);
             }
         });
         Bvolver.addActionListener(new ActionListener() //Devuelve a la pantalla inicial
@@ -128,7 +122,12 @@ public class Ventana extends JFrame {
                 if(Ctimer.isRunning())
                 {
                     Ctimer.stop();
+                    Bempezar.setEnabled(true);
                 }
+                horas = 0;
+                minutos = 0;
+                segundos = 0;
+                ActualizarLtimer();
             }
         });
         Bfacil.addActionListener(new ActionListener() //Abre el nivel facil (4 imagenes)
