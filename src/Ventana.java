@@ -1,49 +1,50 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-public class Ventana extends JFrame
-{
+public class Ventana extends JFrame {
     private JPanel panel1;
+    private JPanel Pinicio;
     private JButton Bfacil;
     private JButton Bmedio;
     private JButton Bdificil;
-    private JLabel Llogo;
+    private JButton Btutorial;
+    private JPanel Pmenus;
+    private JPanel Popciones;
+    private JButton Bvolver;
+    private JPanel Pjuego;
+    private JButton a1Button;
+    private JButton a2Button;
+    private JButton a3Button;
+    private JButton a4Button;
+    private JButton a5Button;
+    private JButton a6Button;
+    private JButton a7Button;
+    private JButton a8Button;
+    private JButton a9Button;
+    private JLabel Ltimer;
+    private JPanel Pconfig;
 
 
-    public Ventana()
-    {
+    public Ventana() {
         super("Memory Game");
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        Bfacil.setFocusPainted(false);
+        Bmedio.setFocusPainted(false);
+        Bdificil.setFocusPainted(false);
+        Pmenus.setVisible(false);
 
         Bfacil.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                JFrame frame = new NivelFacil();
-                frame.setSize(800, 600);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-                dispose();
-
-                frame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        int opc = JOptionPane.showConfirmDialog(null, "¿Desea salir?", "Mensaje de confirmación", JOptionPane.OK_CANCEL_OPTION);
-                        if (opc == 0) {
-                            System.exit(0);
-                        }
-                    }
-                });
+                Pmenus.setVisible(true);
+                Pjuego.setVisible(true);
+                Pinicio.setVisible(false);
+                Pconfig.setVisible(false);
             }
         });
-
-
     }
 }
