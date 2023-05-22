@@ -45,6 +45,7 @@ public class Ventana extends JFrame {
     private int horas = 0;
     private int minutos= 0;
     private int segundos;
+    private Color colorAzul = new Color(67,80,163);
     public void ActualizarLtimer() //Actualiza el label del cronometro
     {
         String ltimer = horas +"h:" + minutos + "m:" + segundos + "s";
@@ -53,15 +54,20 @@ public class Ventana extends JFrame {
         public Ventana()
         {
         super("Memory Game");
-
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Bfacil.setFocusPainted(false);
         Bmedio.setFocusPainted(false);
         Bdificil.setFocusPainted(false);
         Pmenus.setVisible(false);
-
-        //Fondo
+        Pmenus.setBackground(colorAzul);
+        Pfacil.setBackground(colorAzul);
+        Pmedio.setBackground(colorAzul);
+        Pdificil.setBackground(colorAzul);
+        Pinicio.setBackground(colorAzul);
+        Popciones.setBackground(colorAzul);
+        PopcionesJuego.setBackground(colorAzul);
+        Paspectos.setBackground(colorAzul);
 
         Ctimer=new Timer(1000, e -> { //Uso de Timer para el funcionamiento del cronometro
             segundos++;
@@ -201,5 +207,5 @@ public class Ventana extends JFrame {
             }
         });
     }
-
+    
 }
